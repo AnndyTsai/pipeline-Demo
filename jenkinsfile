@@ -1,1 +1,41 @@
-jenk
+#!groovy
+
+@Library('pipeline-Demo') _ //引用Library，pipeline-Demo为我们在Global Pipeline Libraries配置的Name
+
+def tools = new org.demo.tools() //实例化pipeline-Demo项目下的tools方法
+
+String workspace = "/home/jenkins/workspace"
+
+pipeline {
+   agent any
+
+   options {
+   		timestamps() //输出的日子会有时间 这里需要安装jenkins插件timestamper
+   		skipDefaultCheckout() //删除隐私checkout，跳过默认的checkout
+   		disableConcurrentBuilds() //禁止并行执行
+   		timeout(time:1 , unit:'HOURS') //流水线超时设置为1小时
+   }
+   //下载代码打包
+   stages {
+      stage('getCode') { //阶段名称
+         steps { //执行不愁
+         	timeout(time:5 , unit:"MINUTES"){ //设置超时时间为5分钟
+         		script{
+         			println("拉取代码打包构建")
+         		}
+         	}
+         }
+      }
+      //扫描代码
+      stage('codeScan') { //阶段名称
+         steps { //执行不愁
+         	timeout(time:30 , unit:"MINUTES"){ //设置超时时间为30分钟
+         		script{
+         			println("扫描代码，调用tools下的方法printMsg")
+         			tools.printMsg("我是使用shareLibrary构建的pipeline")
+         		}
+         	}
+         }
+      }   
+   }
+}
