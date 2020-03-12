@@ -1,6 +1,6 @@
 #!groovy
 
-@Library() _ //引用Library，pipeline-Demo为我们在Global Pipeline Libraries配置的Name
+@Library("pipeline-Demo") _ //引用Library，pipeline-Demo为我们在Global Pipeline Libraries配置的Name
 
 def tools = new org.demo.tools() //实例化pipeline-Demo项目下的tools方法
 
