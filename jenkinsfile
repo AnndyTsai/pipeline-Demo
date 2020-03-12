@@ -4,7 +4,7 @@
 
 def tools = new org.demo.tools() //实例化pipeline-Demo项目下的tools方法
 
-String workspace = "/home/jenkins/workspace"
+hello() //vars下面的方法直接调用类名
 
 pipeline {
    agent any
