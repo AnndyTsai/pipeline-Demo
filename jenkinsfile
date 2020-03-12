@@ -46,12 +46,14 @@ pipeline {
 	    }
         success {
 	        script {
+		    String build_status = jobB.getResult()
 	            println "运行成功，接下来我们将会去运行另外一个job"
 	            jobB = build job: 'test-Demo-freestyle', propagate: false, wait: true, parameters: [
 	                       	string(name:'version', value: "1.1.0"),
-			    	string(name:'deploy_env', value: "QA")			    
+			    	string(name:'deploy_env', value: "QA"),
+			    string(name:'build_status', value: "${build_status}")
 	                   ]
-	            println jobB.getResult()
+	            println build_status
 	        }
 	    }
 	 always {
