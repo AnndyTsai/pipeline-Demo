@@ -50,7 +50,7 @@ pipeline {
 	            jobB = build job: 'test-Demo-freestyle', propagate: false, wait: true, parameters: [
 	                       	string(name:'version', value: "1.1.0"),
 			    	string(name:'deploy_env', value: "QA"),
-			    string(name:'build_status', value: "${jobB.getResult()}")
+			   	string(name:'build_status', value: "SUCCESS")
 	                   ]
 	            println jobB.getResult()
 	        }
