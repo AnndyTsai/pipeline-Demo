@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("pipeline-Demo") _ //引用Library，pipeline-Demo为我们在Global Pipeline Libraries配置的Name
+@Library("pipeline-Demo")_ //引用Library，pipeline-Demo为我们在Global Pipeline Libraries配置的Name
 
 def tools = new org.demo.tools() //实例化pipeline-Demo项目下的tools方法
 
@@ -10,10 +10,10 @@ pipeline {
    agent any
 
    options {
-   		timestamps() //输出的日子会有时间 这里需要安装jenkins插件timestamper
-   		skipDefaultCheckout() //删除隐私checkout，跳过默认的checkout
-   		disableConcurrentBuilds() //禁止并行执行
-   		timeout(time:1 , unit:'HOURS') //流水线超时设置为1小时
+   	timestamps() //输出的日子会有时间 这里需要安装jenkins插件timestamper
+   	skipDefaultCheckout() //删除隐私checkout，跳过默认的checkout
+   	disableConcurrentBuilds() //禁止并行执行
+   	timeout(time:1 , unit:'HOURS') //流水线超时设置为1小时
    }
    //下载代码打包
    stages {
